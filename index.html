@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Lance Pounds</title>
 <meta name="description" content="Lance Pounds, maker of Zombie Trails, a 1980s-style survival game from Omaha to Boise.">
+<script>
+(function () {
+  var theme = 'light';
+  try { if (localStorage.getItem('lanceos-theme') === 'dark') theme = 'dark'; } catch (e) {}
+  document.documentElement.dataset.theme = theme;
+})();
+</script>
 <style>
   :root {
     --title: linear-gradient(180deg, #0997FF 0%, #0053EE 8%, #0050EE 40%, #0066FF 88%, #005BFF 95%, #003DD7 100%);
@@ -275,6 +282,54 @@
   .resume-actions .btn { height:auto; min-height:42px; padding:8px 16px; }
   .resume-project { padding:18px; margin:14px 0; border:1px solid #c4cfe0; border-left:4px solid #316ac5; background:#f5f8fd; }
   @media (max-width:760px) { .resume-panel {padding:16px;} .resume-tabs {padding:8px 8px 0; gap:2px;} .resume-tabs button {padding:8px 10px;} }
+
+  /* Theme control stays available even when windows are maximized. */
+  .tray #theme-toggle {
+    min-height: 34px; padding: 5px 9px; border: 1px solid #a8d2ff;
+    border-radius: 4px; color: #fff; font-size: 14px; white-space: nowrap;
+    background: #174b9c; align-items: center; justify-content: center;
+  }
+  .tray #theme-toggle:hover { background: #2466c6; }
+  :root[data-theme="dark"] {
+    color-scheme: dark; --face: #242d3b; --line: #526078; --link: #a8ceff;
+    --frame: #426fae; --frame-off: #45546a;
+    --title: linear-gradient(180deg, #38679e, #163b6c);
+    --title-off: linear-gradient(180deg, #49566b, #303d51);
+  }
+  :root[data-theme="light"] { color-scheme: light; }
+  [data-theme="dark"] body { color: #f0f3f8; background: linear-gradient(180deg, #081224, #18344f 70%, #254660); }
+  [data-theme="dark"] .cloud { opacity: .12 !important; }
+  [data-theme="dark"] .hills { filter: brightness(.35) saturate(.6); }
+  [data-theme="dark"] a { color: #a8ceff; }
+  [data-theme="dark"] a:hover { color: #d7e8ff; }
+  [data-theme="dark"] :focus-visible { outline-color: #ffd071; }
+  [data-theme="dark"] .menu a, [data-theme="dark"] .menu button,
+  [data-theme="dark"] .status { color: #f0f3f8; }
+  [data-theme="dark"] .btn { background: linear-gradient(180deg, #3b4b63, #28374c); border-color: #8fa5c3; color: #fff; }
+  [data-theme="dark"] .btn:hover { color: #fff; }
+  [data-theme="dark"] .intro, [data-theme="dark"] .game { background: #182230; color: #f0f3f8; }
+  [data-theme="dark"] .bio-text h1, [data-theme="dark"] .resume-panel h1,
+  [data-theme="dark"] .resume-panel h2 { color: #b5d5ff; }
+  [data-theme="dark"] .resume-panel { background: #182230; color: #f0f3f8; }
+  [data-theme="dark"] .resume-meta { color: #c0cbdb; }
+  [data-theme="dark"] .resume-role { border-color: #526078; }
+  [data-theme="dark"] .resume-project { background: #223148; border-color: #597397; border-left-color: #8fbcff; }
+  [data-theme="dark"] .resume-tabs button { background: #303e52; color: #f0f3f8; border-color: #687b97; }
+  [data-theme="dark"] .resume-tabs button[aria-selected="true"] { background: #182230; border-top-color: #ffc064; }
+  [data-theme="dark"] .startmenu { background: #182230; border-color: #597397; }
+  [data-theme="dark"] .sm-right { background: #24364e; border-color: #597397; }
+  [data-theme="dark"] .sm-item, [data-theme="dark"] .sm-right .sm-item { color: #f0f3f8; }
+  [data-theme="dark"] .sm-item small { color: #c0cbdb; }
+  [data-theme="dark"] .sm-head, [data-theme="dark"] .sm-foot,
+  [data-theme="dark"] .taskbar { background: linear-gradient(180deg, #29486d, #142b49); }
+  [data-theme="dark"] .task { background: #29486d; border-color: #6682a7; }
+  [data-theme="dark"] .task:hover { background: #3c5e86; }
+  [data-theme="dark"] .task[aria-pressed="true"] { background: #102742; }
+  [data-theme="dark"] .tray { background: #173752; border-color: #597397; }
+  [data-theme="dark"] .balloon { background: #25364a; color: #f0f3f8; border-color: #8fa5c3; }
+  [data-theme="dark"] .balloon::after { border-top-color: #25364a; }
+  [data-theme="dark"] .balloon .bx { background: #344760; color: #fff; }
+  @media (max-width: 760px) { .tray { padding: 0 6px; gap: 5px; } .tray #theme-toggle { padding: 5px 7px; } }
 </style>
 </head>
 <body>
@@ -409,6 +464,7 @@
   <button class="start" id="start" type="button" aria-expanded="false" aria-controls="startmenu"><span class="dot">LP</span>lance</button>
   <div class="tasks" id="tasks" aria-label="Open windows"></div>
   <div class="tray">
+    <button type="button" id="theme-toggle" aria-label="Dark theme" aria-pressed="false">Dark theme</button>
     <button type="button" id="tray-info" aria-label="Show tip"><svg width="18" height="18" aria-hidden="true"><use href="#i-info"/></svg></button>
     <span class="clock-wrap"><time id="clock"></time></span>
   </div>
@@ -657,6 +713,21 @@
     document.getElementById('poweron').focus();
   });
   document.getElementById('poweron').addEventListener('click', function () { shutdown.hidden = true; boot(true); });
+
+
+  var themeToggle = document.getElementById('theme-toggle');
+  function applyTheme(theme) {
+    document.documentElement.dataset.theme = theme;
+    themeToggle.setAttribute('aria-pressed', String(theme === 'dark'));
+    themeToggle.textContent = theme === 'dark' ? 'Light theme' : 'Dark theme';
+    themeToggle.setAttribute('aria-label', 'Dark theme');
+  }
+  applyTheme(document.documentElement.dataset.theme || 'light');
+  themeToggle.addEventListener('click', function () {
+    var next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+    try { localStorage.setItem('lanceos-theme', next); } catch (e) {}
+  });
 
   // clock
   var clock = document.getElementById('clock');
