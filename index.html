@@ -217,21 +217,6 @@
   }
   .sm-foot button:hover { background: rgba(255, 255, 255, 0.18); }
 
-  /* ---------- notification balloon ---------- */
-  .balloon {
-    position: fixed; right: 12px; bottom: calc(var(--bar-h) + 12px); z-index: 9200; width: 290px;
-    padding: 10px 12px 12px; border: 1px solid #000; border-radius: 8px;
-    background: #FFFFE1; box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.35); font-size: 13px; line-height: 1.45;
-  }
-  .balloon[hidden] { display: none; }
-  .balloon::after {
-    content: ""; position: absolute; right: 40px; bottom: -11px;
-    border: 11px solid transparent; border-bottom: 0; border-top-color: #FFFFE1;
-  }
-  .balloon h3 { margin: 0 0 4px; font-size: 13px; display: flex; align-items: center; gap: 6px; }
-  .balloon p { margin: 0; }
-  .balloon .bx { position: absolute; top: 6px; right: 6px; width: 18px; height: 18px; padding: 0; border: 1px solid #999; border-radius: 3px; background: #fff; cursor: pointer; line-height: 1; }
-
   /* ---------- boot and shutdown ---------- */
   .screen {
     position: fixed; inset: 0; z-index: 10000; background: #000; color: #fff;
@@ -326,9 +311,6 @@
   [data-theme="dark"] .task:hover { background: #3c5e86; }
   [data-theme="dark"] .task[aria-pressed="true"] { background: #102742; }
   [data-theme="dark"] .tray { background: #173752; border-color: #597397; }
-  [data-theme="dark"] .balloon { background: #25364a; color: #f0f3f8; border-color: #8fa5c3; }
-  [data-theme="dark"] .balloon::after { border-top-color: #25364a; }
-  [data-theme="dark"] .balloon .bx { background: #344760; color: #fff; }
   @media (max-width: 760px) { .tray { padding: 0 6px; gap: 5px; } .tray #theme-toggle { padding: 5px 7px; } }
 </style>
 </head>
@@ -465,16 +447,9 @@
   <div class="tasks" id="tasks" aria-label="Open windows"></div>
   <div class="tray">
     <button type="button" id="theme-toggle" aria-label="Dark theme" aria-pressed="false">Dark theme</button>
-    <button type="button" id="tray-info" aria-label="Show tip"><svg width="18" height="18" aria-hidden="true"><use href="#i-info"/></svg></button>
     <span class="clock-wrap"><time id="clock"></time></span>
   </div>
 </footer>
-
-<div class="balloon" id="balloon" role="status" hidden>
-  <button class="bx" type="button" aria-label="Close tip">&times;</button>
-  <h3><svg width="16" height="16" aria-hidden="true"><use href="#i-info"/></svg>Welcome</h3>
-  <p><span id="tip-verb">Double-click</span> Zombie Trails on the desktop to play. It's in beta, so expect a few rough edges.</p>
-</div>
 
 <div class="screen" id="boot" hidden>
   <div class="wordmark">Lance<span>OS</span></div>
@@ -493,7 +468,6 @@
   var tasks = document.getElementById('tasks');
   var startBtn = document.getElementById('start');
   var startMenu = document.getElementById('startmenu');
-  var balloon = document.getElementById('balloon');
   var frame = document.getElementById('zt');
   frame.closest('.win').dataset.src = GAME_URL;
   var small = window.matchMedia('(max-width: 760px)');
@@ -547,7 +521,6 @@
     w.open = true; w.min = false; w.el.hidden = false;
     focusWin(id);
     closeStart();
-    if (id === 'game') balloon.hidden = true;
   }
   function minWin(id) { var w = wins[id]; w.min = true; w.el.hidden = true; focusWin(topId()); }
   function closeWin(id) { var w = wins[id]; w.open = false; w.min = false; w.el.hidden = true; focusWin(topId()); }
@@ -688,16 +661,12 @@
     var opening = startMenu.hidden;
     startMenu.hidden = !opening;
     startBtn.setAttribute('aria-expanded', String(opening));
-    if (opening) { balloon.hidden = true; startMenu.querySelector('.sm-item').focus(); }
+    if (opening) { startMenu.querySelector('.sm-item').focus(); }
   });
   document.addEventListener('pointerdown', function (e) {
     if (!startMenu.hidden && !startMenu.contains(e.target) && !startBtn.contains(e.target)) closeStart();
   });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !startMenu.hidden) { closeStart(); startBtn.focus(); } });
-
-  // balloon tip
-  balloon.querySelector('.bx').addEventListener('click', function () { balloon.hidden = true; });
-  document.getElementById('tray-info').addEventListener('click', function () { balloon.hidden = !balloon.hidden; });
 
   // restart and turn off
   document.getElementById('restart').addEventListener('click', function () {
@@ -745,9 +714,7 @@
 
   // boot sequence, once per visit
   function ready() {
-    if (touch.matches) document.getElementById('tip-verb').textContent = 'Tap';
     openWin('about');
-    setTimeout(function () { balloon.hidden = false; }, 600);
   }
   function boot(force) {
     var bootEl = document.getElementById('boot');
