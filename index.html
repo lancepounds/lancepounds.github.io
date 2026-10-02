@@ -405,6 +405,7 @@
 <main class="desk" id="desk">
   <ul class="icons" aria-label="Desktop">
     <li><button class="icon" type="button" data-open="game"><svg width="48" height="48" aria-hidden="true"><use href="#i-zt"/></svg><span>Zombie Trails</span></button></li>
+    <li><button class="icon" type="button" data-open="blort"><svg width="48" height="48" aria-hidden="true"><use href="#i-web"/></svg><span>BLORT</span></button></li>
     <li><button class="icon" type="button" data-open="speechy"><svg width="48" height="48" aria-hidden="true"><use href="#i-sp"/></svg><span>Speechy</span></button></li>
     <li><button class="icon" type="button" data-open="about"><svg width="48" height="48" aria-hidden="true"><use href="#i-doc"/></svg><span>About Lance</span></button></li>
     <li><button class="icon" type="button" data-open="resume"><svg width="48" height="48" aria-hidden="true"><use href="#i-doc"/></svg><span>Lance's Résumé</span></button></li>
@@ -454,6 +455,27 @@
     <div class="status"><span>Beta</span><span>Blank window? <a href="https://lancepounds.github.io/zombie-trails/" target="_blank" rel="noopener">Open in a new tab</a></span></div>
   </section>
 
+  <section class="win" id="blort" data-title="BLORT" data-src="https://lancepounds.github.io/Blort/" data-icon="i-web" aria-labelledby="blort-t" hidden>
+    <div class="bar">
+      <h2 id="blort-t"><svg width="16" height="16" aria-hidden="true"><use href="#i-web"/></svg>BLORT - The Gumphastic Yawn Parade</h2>
+      <div class="ctl">
+        <button type="button" data-act="min" aria-label="Minimize"><svg width="9" height="9" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 8h6" stroke="currentColor" stroke-width="2.5"/></svg></button>
+        <button type="button" data-act="max" aria-label="Maximize"><svg width="9" height="9" viewBox="0 0 10 10" aria-hidden="true"><rect x="1" y="1" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+        <button type="button" data-act="close" class="x" aria-label="Close"><svg width="9" height="9" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 1l8 8M9 1l-8 8" stroke="currentColor" stroke-width="2.2"/></svg></button>
+      </div>
+    </div>
+    <div class="menu">
+      <button type="button" data-fr="full">Full screen</button>
+      <button type="button" data-fr="reload">Reload</button>
+      <a href="https://lancepounds.github.io/Blort/" target="_blank" rel="noopener">Open in a new tab</a>
+    </div>
+    <div class="wbody game">
+      <!-- The game only loads the first time its window opens. -->
+      <iframe title="BLORT platform game" allow="fullscreen; autoplay" allowfullscreen></iframe>
+    </div>
+    <div class="status"><span>Beta</span><span>Blank window? <a href="https://lancepounds.github.io/Blort/" target="_blank" rel="noopener">Open in a new tab</a></span></div>
+  </section>
+
   <section class="win" id="speechy" data-title="Speechy" data-icon="i-sp" data-src="https://lancepounds.github.io/Speechy/?v=20260928-femisheart#femisheart" aria-labelledby="speechy-t" hidden>
     <div class="bar">
       <h2 id="speechy-t"><svg width="16" height="16" aria-hidden="true"><use href="#i-sp"/></svg>Speechy - communication board</h2>
@@ -497,6 +519,7 @@
   <div class="sm-cols">
     <div class="sm-left"><button class="sm-item" type="button" data-open="resume"><svg width="32" height="32" aria-hidden="true"><use href="#i-doc"/></svg><span><b>Lance's Résumé</b><small>Experience, projects &amp; PDF</small></span></button>
       <button class="sm-item" type="button" data-open="game"><svg width="32" height="32" aria-hidden="true"><use href="#i-zt"/></svg><span><b>Zombie Trails</b><small>Omaha to Boise survival game</small></span></button>
+      <button class="sm-item" type="button" data-open="blort"><svg width="32" height="32" aria-hidden="true"><use href="#i-web"/></svg><span><b>BLORT</b><small>The Gumphastic Yawn Parade</small></span></button>
       <button class="sm-item" type="button" data-open="speechy"><svg width="32" height="32" aria-hidden="true"><use href="#i-sp"/></svg><span><b>Speechy</b><small>Communication board that talks</small></span></button>
       <button class="sm-item" type="button" data-open="about"><svg width="32" height="32" aria-hidden="true"><use href="#i-doc"/></svg><span><b>About Lance</b><small>Who made this</small></span></button>
     </div>
@@ -543,7 +566,7 @@
   var touch = window.matchMedia('(hover: none)');
   var z = 10;
   var wins = {};
-  ['about', 'game', 'speechy', 'resume', 'accessibility'].forEach(function (id) {
+  ['about', 'game', 'blort', 'speechy', 'resume', 'accessibility'].forEach(function (id) {
     var el = document.getElementById(id);
     wins[id] = { el: el, frame: el.querySelector('iframe'), open: false, min: false, placed: false };
   });
@@ -554,7 +577,7 @@
     var d = deskSize(), el = wins[id].el;
     if (small.matches) { el.classList.add('max'); return; }
     var w, h, x, y;
-    if (id === 'game') {
+    if (id === 'game' || id === 'blort') {
       w = Math.min(1000, d.w - 150); h = Math.min(760, d.h - 30);
       x = Math.max(120, d.w - w - 24); y = 12;
     } else if (id === 'speechy') {
