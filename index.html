@@ -405,6 +405,7 @@
   <symbol id="i-doc" viewBox="0 0 48 48"><path d="M10 4h20l8 8v32H10z" fill="#fff" stroke="#5A6E8C" stroke-width="2"/><path d="M30 4v8h8M16 20h16M16 26h16M16 32h12" fill="none" stroke="#5A6E8C" stroke-width="2"/></symbol>
   <symbol id="i-sp" viewBox="0 0 48 48"><path d="M6 10a3 3 0 0 1 3-3h30a3 3 0 0 1 3 3v20a3 3 0 0 1-3 3H21l-9 8v-8H9a3 3 0 0 1-3-3z" fill="#F2D45C" stroke="#8A6D12" stroke-width="2"/><path d="M14 16h20M14 23h13" stroke="#5A4405" stroke-width="2.5" stroke-linecap="round"/></symbol>
   <symbol id="i-blort" viewBox="0 0 48 48"><rect x="4" y="4" width="40" height="40" rx="8" fill="#8154C8" stroke="#482477" stroke-width="2"/><path d="M15 17h18c4 0 6 4 7 12l1 5c0 4-4 5-7 2l-5-5H19l-5 5c-3 3-7 2-7-2l1-5c1-8 3-12 7-12z" fill="#FFF5D8" stroke="#38264E" stroke-width="2"/><path d="M16 21v9M11.5 25.5h9" stroke="#38264E" stroke-width="3"/><circle cx="31" cy="23" r="2.5" fill="#DA537D"/><circle cx="36" cy="28" r="2.5" fill="#46A9A0"/></symbol>
+  <symbol id="i-writy" viewBox="0 0 48 48"><path d="M9 3h23l8 8v33H9z" fill="#FFFDF7" stroke="#2351A4" stroke-width="2.2"/><path d="M32 3v9h8M15 20h17M15 26h13M15 32h9" fill="none" stroke="#7297D0" stroke-width="2"/><path d="M24 39l3-8 9-9 5 5-9 9z" fill="#F7C650" stroke="#8F6817" stroke-width="1.5"/><path d="M24 39l3-8 5 5z" fill="#4D6077"/></symbol>
   <symbol id="i-web" viewBox="0 0 48 48"><circle cx="24" cy="24" r="17" fill="#DDE8FB" stroke="#2A5BB8" stroke-width="2"/><path d="M7 24h34M24 7c-6 5-6 29 0 34M24 7c6 5 6 29 0 34" fill="none" stroke="#2A5BB8" stroke-width="2"/></symbol>
   <symbol id="i-max" viewBox="0 0 48 48"><rect x="6" y="8" width="36" height="28" rx="2" fill="#DDE8FB" stroke="#2A5BB8" stroke-width="2"/><path d="M14 16h8M14 16v6M34 28h-8M34 28v-6" stroke="#0B2F7A" stroke-width="2.5"/></symbol>
   <symbol id="i-power" viewBox="0 0 24 24"><rect x="1" y="1" width="22" height="22" rx="4" fill="#E0542B" stroke="#fff" stroke-width="1.5"/><path d="M12 5v7M8 8a6 6 0 1 0 8 0" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></symbol>
@@ -417,6 +418,7 @@
     <li><button class="icon" type="button" data-open="game"><svg width="48" height="48" aria-hidden="true"><use href="#i-zt"/></svg><span>Zombie Trails</span></button></li>
     <li><button class="icon" type="button" data-open="blort"><svg width="48" height="48" aria-hidden="true"><use href="#i-blort"/></svg><span>BLORT</span></button></li>
     <li><button class="icon" type="button" data-open="speechy"><svg width="48" height="48" aria-hidden="true"><use href="#i-sp"/></svg><span>Speechy</span></button></li>
+    <li><button class="icon" type="button" data-open="writy"><svg width="48" height="48" aria-hidden="true"><use href="#i-writy"/></svg><span>Writy</span></button></li>
     <li><button class="icon" type="button" data-open="about"><svg width="48" height="48" aria-hidden="true"><use href="#i-doc"/></svg><span>About Lance</span></button></li>
     <li><button class="icon" type="button" data-open="resume"><svg width="48" height="48" aria-hidden="true"><use href="#i-doc"/></svg><span>Lance's Résumé</span></button></li>
     <li><button class="icon" type="button" data-open="accessibility"><svg width="48" height="48" aria-hidden="true"><use href="#i-info"/></svg><span>Accessibility</span></button></li>
@@ -506,6 +508,26 @@
     </div>
     <div class="status"><span>Works on phones and desktops</span><span>Blank window? <a href="https://lancepounds.github.io/Speechy/?v=20261014-train-talk#cls" target="_blank" rel="noopener">Open in a new tab</a></span></div>
   </section>
+<section class="win" id="writy" data-title="Writy" data-icon="i-writy" data-src="https://lancepounds.github.io/Writy/writy.html" aria-labelledby="writy-t" hidden>
+    <div class="bar">
+      <h2 id="writy-t"><svg width="16" height="16" aria-hidden="true"><use href="#i-writy"/></svg>Writy — adaptive word processor</h2>
+      <div class="ctl">
+        <button type="button" data-act="min" aria-label="Minimize"><svg width="9" height="9" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 8h6" stroke="currentColor" stroke-width="2.5"/></svg></button>
+        <button type="button" data-act="max" aria-label="Maximize"><svg width="9" height="9" viewBox="0 0 10 10" aria-hidden="true"><rect x="1" y="1" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+        <button type="button" data-act="close" class="x" aria-label="Close"><svg width="9" height="9" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 1l8 8M9 1l-8 8" stroke="currentColor" stroke-width="2.2"/></svg></button>
+      </div>
+    </div>
+    <div class="menu">
+      <button type="button" data-fr="full">Full screen</button>
+      <button type="button" data-fr="reload">Reload</button>
+      <a href="https://lancepounds.github.io/Writy/writy.html" target="_blank" rel="noopener">Open Writy in a new tab</a>
+    </div>
+    <div class="wbody game">
+      <!-- Load Writy only when the user opens its window. -->
+      <iframe title="Writy adaptive word processor" allow="fullscreen" allowfullscreen></iframe>
+    </div>
+    <div class="status"><span>Local-first writing and word prediction</span><span><a href="https://lancepounds.github.io/Writy/writy.html" target="_blank" rel="noopener">Use Writy directly</a> for extra room</span></div>
+  </section>
 <section class="win" id="resume" data-title="Lance's Résumé" data-icon="i-doc" aria-labelledby="resume-t" hidden><div class="bar">
       <h2 id="resume-t"><svg width="16" height="16" aria-hidden="true"><use href="#i-doc"/></svg>Lance's Résumé</h2>
       <div class="ctl">
@@ -521,7 +543,7 @@
         <button type="button" data-act="max" aria-label="Maximize"><svg width="9" height="9" viewBox="0 0 10 10" aria-hidden="true"><rect x="1" y="1" width="8" height="8" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
         <button type="button" data-act="close" class="x" aria-label="Close"><svg width="9" height="9" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 1l8 8M9 1l-8 8" stroke="currentColor" stroke-width="2.2"/></svg></button>
       </div>
-    </div><div class="wbody access-body"><h3>Make Lance OS easier to use</h3><p>Your settings are saved on this browser.</p><label class="access-setting"><input type="checkbox" id="access-largeText" data-access-setting="largeText"><span><strong>Larger text</strong><small>Increase text size in Lance OS windows and menus.</small></span></label><label class="access-setting"><input type="checkbox" id="access-largeControls" data-access-setting="largeControls"><span><strong>Bigger controls</strong><small>Enlarge buttons, checkboxes, and window controls.</small></span></label><label class="access-setting"><input type="checkbox" id="access-reduceMotion" data-access-setting="reduceMotion"><span><strong>Reduced animation</strong><small>Skip the startup animation and reduce movement.</small></span></label><label class="access-setting"><input type="checkbox" id="access-singleClick" data-access-setting="singleClick"><span><strong>Single-click opening</strong><small>Open desktop apps with one click instead of a double-click.</small></span></label><label class="access-setting"><input type="checkbox" id="access-dwellClick" data-access-setting="dwellClick"><span><strong>Dwell to click</strong><small>Hold the pointer still over a control for about 1.5 seconds to activate it. Move away to cancel. Does not operate inside embedded apps.</small></span></label><label class="access-setting"><input type="checkbox" id="access-simpleLayout" data-access-setting="simpleLayout"><span><strong>Simplified desktop layout</strong><small>Larger desktop launchers and a predictable window position, without resizing.</small></span></label><p class="access-note"><strong>Keyboard:</strong> Tab and Shift+Tab move between controls; Enter or Space activates buttons; Escape closes the Start menu. Use Alt+Shift+1 for About, 2 for Zombie Trails, 3 for Speechy, 4 for Résumé, and 5 for Accessibility.</p><p class="access-note">These settings apply to Lance OS. Speechy and Zombie Trails have their own controls inside each app. Your device’s reduced-motion preference is always respected.</p><button class="btn access-reset" type="button" id="access-reset">Reset accessibility settings</button><p id="access-feedback" role="status" aria-live="polite" class="access-note"></p></div></section>
+    </div><div class="wbody access-body"><h3>Make Lance OS easier to use</h3><p>Your settings are saved on this browser.</p><label class="access-setting"><input type="checkbox" id="access-largeText" data-access-setting="largeText"><span><strong>Larger text</strong><small>Increase text size in Lance OS windows and menus.</small></span></label><label class="access-setting"><input type="checkbox" id="access-largeControls" data-access-setting="largeControls"><span><strong>Bigger controls</strong><small>Enlarge buttons, checkboxes, and window controls.</small></span></label><label class="access-setting"><input type="checkbox" id="access-reduceMotion" data-access-setting="reduceMotion"><span><strong>Reduced animation</strong><small>Skip the startup animation and reduce movement.</small></span></label><label class="access-setting"><input type="checkbox" id="access-singleClick" data-access-setting="singleClick"><span><strong>Single-click opening</strong><small>Open desktop apps with one click instead of a double-click.</small></span></label><label class="access-setting"><input type="checkbox" id="access-dwellClick" data-access-setting="dwellClick"><span><strong>Dwell to click</strong><small>Hold the pointer still over a control for about 1.5 seconds to activate it. Move away to cancel. Does not operate inside embedded apps.</small></span></label><label class="access-setting"><input type="checkbox" id="access-simpleLayout" data-access-setting="simpleLayout"><span><strong>Simplified desktop layout</strong><small>Larger desktop launchers and a predictable window position, without resizing.</small></span></label><p class="access-note"><strong>Keyboard:</strong> Tab and Shift+Tab move between controls; Enter or Space activates buttons; Escape closes the Start menu. Use Alt+Shift+1 for About, 2 for Zombie Trails, 3 for Speechy, 4 for Résumé, 5 for Accessibility, and 6 for Writy.</p><p class="access-note">These settings apply to Lance OS. Speechy and Zombie Trails have their own controls inside each app. Your device’s reduced-motion preference is always respected.</p><button class="btn access-reset" type="button" id="access-reset">Reset accessibility settings</button><p id="access-feedback" role="status" aria-live="polite" class="access-note"></p></div></section>
 </main>
 
 <nav class="startmenu" id="startmenu" aria-label="Start menu" hidden>
@@ -531,6 +553,7 @@
       <button class="sm-item" type="button" data-open="game"><svg width="32" height="32" aria-hidden="true"><use href="#i-zt"/></svg><span><b>Zombie Trails</b><small>Omaha to Boise survival game</small></span></button>
       <button class="sm-item" type="button" data-open="blort"><svg width="32" height="32" aria-hidden="true"><use href="#i-blort"/></svg><span><b>BLORT</b><small>The Gumphastic Yawn Parade</small></span></button>
       <button class="sm-item" type="button" data-open="speechy"><svg width="32" height="32" aria-hidden="true"><use href="#i-sp"/></svg><span><b>Speechy</b><small>Communication board that talks</small></span></button>
+      <button class="sm-item" type="button" data-open="writy"><svg width="32" height="32" aria-hidden="true"><use href="#i-writy"/></svg><span><b>Writy</b><small>Adaptive word processor</small></span></button>
       <button class="sm-item" type="button" data-open="about"><svg width="32" height="32" aria-hidden="true"><use href="#i-doc"/></svg><span><b>About Lance</b><small>Who made this</small></span></button>
     </div>
     <div class="sm-right"><button class="sm-item" type="button" data-open="accessibility"><svg width="22" height="22" aria-hidden="true"><use href="#i-info"/></svg>Accessibility</button>
@@ -576,7 +599,7 @@
   var touch = window.matchMedia('(hover: none)');
   var z = 10;
   var wins = {};
-  ['about', 'game', 'blort', 'speechy', 'resume', 'accessibility'].forEach(function (id) {
+  ['about', 'game', 'blort', 'speechy', 'writy', 'resume', 'accessibility'].forEach(function (id) {
     var el = document.getElementById(id);
     wins[id] = { el: el, frame: el.querySelector('iframe'), open: false, min: false, placed: false };
   });
@@ -587,7 +610,7 @@
     var d = deskSize(), el = wins[id].el;
     if (small.matches) { el.classList.add('max'); return; }
     var w, h, x, y;
-    if (id === 'game' || id === 'blort') {
+    if (id === 'game' || id === 'blort' || id === 'writy') {
       w = Math.min(1000, d.w - 150); h = Math.min(760, d.h - 30);
       x = Math.max(120, d.w - w - 24); y = 12;
     } else if (id === 'speechy') {
@@ -871,9 +894,9 @@
   document.addEventListener('pointerdown', stopDwell);
   document.addEventListener('scroll', stopDwell, true);
   document.addEventListener('keydown', function(e) {
-    if (e.altKey && e.shiftKey && !e.ctrlKey && !e.metaKey && /^[1-5]$/.test(e.key)) {
+    if (e.altKey && e.shiftKey && !e.ctrlKey && !e.metaKey && /^[1-6]$/.test(e.key)) {
       e.preventDefault();
-      openWin(({1:'about',2:'game',3:'speechy',4:'resume',5:'accessibility'})[e.key]);
+      openWin(({1:'about',2:'game',3:'speechy',4:'resume',5:'accessibility',6:'writy'})[e.key]);
     }
   });
   // clock
